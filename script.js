@@ -92,3 +92,92 @@ const updatedProducts = updateStock(products, 5, 100);
 
 console.log(updatedProducts);
 console.log(products);
+//3
+const nestedProducts = [
+    {
+        id: 1,
+        title: "Laptop",
+        price: 1200,
+        rating: 4.5,
+        stock: 10,
+        category: "laptops",
+        tags: ["computer", "electronics", "office"],
+        dimensions: {
+            width: 30,
+            height: 2,
+            depth: 20
+        },
+        reviews: [
+            { user: "A", rating: 5, comment: "Good product" },
+            { user: "B", rating: 4, comment: "Worth it" }
+        ]
+    },
+    {
+        id: 2,
+        title: "Smartphone",
+        price: 800,
+        rating: 4.2,
+        stock: 15,
+        category: "phones",
+        tags: ["mobile", "electronics"],
+        dimensions: {
+            width: 7,
+            height: 0.8,
+            depth: 15
+        },
+        reviews: [
+            { user: "C", rating: 4, comment: "Nice camera" },
+            { user: "D", rating: 5, comment: "Fast" },
+            { user: "E", rating: 3, comment: "Battery so-so" }
+        ]
+    }
+];
+
+const allTags = nestedProducts.map(product => product.tags);
+
+console.log(allTags);
+function findProductsByTag(products, tag) {
+    return products.filter(product => product.tags.includes(tag));
+}
+
+console.log(findProductsByTag(nestedProducts, "electronics"));
+const reviewCounts = nestedProducts.map(product => ({
+    id: product.id,
+    title: product.title,
+    totalReviews: product.reviews.length
+}));
+
+console.log(reviewCounts);
+const fiveStarReviews = nestedProducts.flatMap(product =>
+    product.reviews.filter(review => review.rating === 5)
+);
+
+console.log(fiveStarReviews);
+const averageRatings = nestedProducts.map(product => {
+    const totalRating = product.reviews.reduce(
+        (total, review) => total + review.rating,
+        0
+    );
+
+    const averageRating = totalRating / product.reviews.length;
+
+    return {
+        id: product.id,
+        title: product.title,
+        averageRating: averageRating
+    };
+});
+
+console.log(averageRatings);
+const productWithMostReviews = nestedProducts.reduce((most, product) => {
+    return product.reviews.length > most.reviews.length
+        ? product
+        : most;
+});
+
+console.log(productWithMostReviews);
+const allReviewRatings = nestedProducts.flatMap(product =>
+    product.reviews.map(review => review.rating)
+);
+
+console.log(allReviewRatings);
