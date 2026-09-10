@@ -181,3 +181,13 @@ const allReviewRatings = nestedProducts.flatMap(product =>
 );
 
 console.log(allReviewRatings);
+//4.1
+const allTagsFlat = nestedProducts.flatMap(product => product.tags);
+
+console.log(allTagsFlat);
+//4.2
+const allComments = nestedProducts.flatMap(product =>
+    product.reviews.map(review => review.comment)
+);
+
+console.log(allComments);
