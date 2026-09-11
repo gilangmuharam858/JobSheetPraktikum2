@@ -245,3 +245,39 @@ function getStatistics(products) {
 }
 
 console.log(getStatistics(products));
+
+//6.1
+function linearSearch(array, target) {
+
+    for (let i = 0; i < array.length; i++) {
+
+        if (array[i] === target) {
+            return i;
+        }
+
+    }
+
+    return -1;
+}
+
+const numbers = [10, 20, 30, 40, 50];
+
+console.log(linearSearch(numbers, 40));
+console.log(linearSearch(numbers, 100));
+
+// 6.2
+function findProductByLinearSearch(products, id) {
+
+    for (let i = 0; i < products.length; i++) {
+
+        if (products[i].id === id) {
+            return products[i];
+        }
+
+    }
+
+    return -1;
+}
+
+console.log(findProductByLinearSearch(products, 10));
+console.log(findProductByLinearSearch(products, 99));
