@@ -281,3 +281,64 @@ function findProductByLinearSearch(products, id) {
 
 console.log(findProductByLinearSearch(products, 10));
 console.log(findProductByLinearSearch(products, 99));
+// 7.1
+function binarySearch(sortedArray, target) {
+
+    let left = 0;
+    let right = sortedArray.length - 1;
+
+    while (left <= right) {
+
+        const mid = Math.floor((left + right) / 2);
+
+        if (sortedArray[mid] === target) {
+            return mid;
+        }
+
+        if (sortedArray[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return -1;
+}
+
+const sortedNumbers = [10, 20, 30, 40, 50, 60, 70];
+
+console.log(binarySearch(sortedNumbers, 60));
+console.log(binarySearch(sortedNumbers, 25));
+
+// 7.2
+const sortedProductsByPrice = [...products].sort(
+    (a, b) => a.price - b.price
+);
+
+console.log(sortedProductsByPrice);
+
+function binarySearchByPrice(sortedProducts, targetPrice) {
+
+    let left = 0;
+    let right = sortedProducts.length - 1;
+
+    while (left <= right) {
+
+        const mid = Math.floor((left + right) / 2);
+
+        if (sortedProducts[mid].price === targetPrice) {
+            return sortedProducts[mid];
+        }
+
+        if (sortedProducts[mid].price < targetPrice) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return -1;
+}
+
+console.log(binarySearchByPrice(sortedProductsByPrice, 200));
+console.log(binarySearchByPrice(sortedProductsByPrice, 999));
