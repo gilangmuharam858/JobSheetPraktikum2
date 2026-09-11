@@ -191,3 +191,57 @@ const allComments = nestedProducts.flatMap(product =>
 );
 
 console.log(allComments);
+
+//5.1
+const laptopPrices = products
+    .filter(product => product.category === "laptops")
+    .map(product => product.price);
+
+const averageLaptopPrice =
+    laptopPrices.reduce(
+        (total, price) => total + price,
+        0
+    ) / laptopPrices.length;
+
+console.log(averageLaptopPrice);
+//5.2
+function getStatistics(products) {
+
+    const totalProducts = products.length;
+
+    const totalPrice = products.reduce(
+        (total, product) => total + product.price,
+        0
+    );
+
+    const averagePrice = totalPrice / totalProducts;
+
+    const prices = products.map(product => product.price);
+
+    const highestPrice = Math.max(...prices);
+
+    const lowestPrice = Math.min(...prices);
+
+    const totalStock = products.reduce(
+        (total, product) => total + product.stock,
+        0
+    );
+
+    const totalRating = products.reduce(
+        (total, product) => total + product.rating,
+        0
+    );
+
+    const averageRating = totalRating / totalProducts;
+
+    return {
+        totalProducts: totalProducts,
+        averagePrice: averagePrice,
+        highestPrice: highestPrice,
+        lowestPrice: lowestPrice,
+        totalStock: totalStock,
+        averageRating: averageRating
+    };
+}
+
+console.log(getStatistics(products));
