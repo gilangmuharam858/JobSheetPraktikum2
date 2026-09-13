@@ -342,3 +342,100 @@ function binarySearchByPrice(sortedProducts, targetPrice) {
 
 console.log(binarySearchByPrice(sortedProductsByPrice, 200));
 console.log(binarySearchByPrice(sortedProductsByPrice, 999));
+
+// 8.1
+
+function bubbleSort(numbers) {
+
+    const result = [...numbers];
+
+    for (let i = 0; i < result.length; i++) {
+
+        for (let j = 0; j < result.length - 1 - i; j++) {
+
+            if (result[j] > result[j + 1]) {
+
+                const temp = result[j];
+
+                result[j] = result[j + 1];
+
+                result[j + 1] = temp;
+            }
+        }
+    }
+
+    return result;
+}
+
+const numbersToSort = [5, 2, 8, 1, 3];
+
+console.log("Data asli:", numbersToSort);
+console.log("Data setelah sorting:", bubbleSort(numbersToSort));
+
+// 8.2
+function sortProducts(products, sortBy) {
+
+    const result = [...products];
+
+    if (sortBy === "price-asc") {
+        return result.sort((a, b) => a.price - b.price);
+    }
+
+    if (sortBy === "price-desc") {
+        return result.sort((a, b) => b.price - a.price);
+    }
+
+    if (sortBy === "rating") {
+        return result.sort((a, b) => b.rating - a.rating);
+    }
+
+    if (sortBy === "title") {
+        return result.sort((a, b) => a.title.localeCompare(b.title));
+    }
+
+    return result;
+}
+
+console.log("Harga termurah:");
+console.log(sortProducts(products, "price-asc"));
+
+console.log("Harga termahal:");
+console.log(sortProducts(products, "price-desc"));
+
+console.log("Rating tertinggi:");
+console.log(sortProducts(products, "rating"));
+
+console.log("Judul A-Z:");
+console.log(sortProducts(products, "title"));
+
+// 9.1
+function groupByCategory(products) {
+
+    return products.reduce((groups, product) => {
+
+        const key = product.category;
+
+        if (!groups[key]) {
+            groups[key] = [];
+        }
+
+        groups[key].push(product);
+
+        return groups;
+
+    }, {});
+}
+
+const groupedProducts = groupByCategory(products);
+
+console.log(groupedProducts);
+
+// 9.2
+const categorySummary = Object.entries(groupedProducts).map(
+    ([category, products]) => ({
+        category: category,
+        totalProducts: products.length
+    })
+);
+
+console.table(categorySummary);
