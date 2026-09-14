@@ -511,3 +511,46 @@ console.log(productLookup);
 
 console.log("Produk dengan ID 10:");
 console.log(productLookup.get(10));
+
+// 13.1
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+
+    push(item) {
+        this.items.push(item);
+    }
+
+    pop() {
+        return this.items.pop();
+    }
+
+    peek() {
+        return this.items[this.items.length - 1];
+    }
+
+    isEmpty() {
+        return this.items.length === 0;
+    }
+}
+
+// 13.2
+const searchHistory = new Stack();
+
+searchHistory.push("laptop");
+searchHistory.push("phone");
+searchHistory.push("tablet");
+
+console.log("Search History:");
+console.log(searchHistory.items);
+
+function undoSearch(searchHistory) {
+    return searchHistory.pop();
+}
+
+console.log("Undo Search:", undoSearch(searchHistory));
+console.log("Search History setelah undo:");
+console.log(searchHistory.items);
+
+console.log("Keyword sebelumnya:", searchHistory.peek());
