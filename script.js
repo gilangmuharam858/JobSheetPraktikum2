@@ -618,3 +618,126 @@ function printCategories(categories, depth = 0) {
 }
 
 printCategories(categoryTree);
+
+// 16.1
+const largeNumbers = Array.from(
+    { length: 10000 },
+    (_, index) => index + 1
+);
+
+function linearSearchWithSteps(array, target) {
+    let steps = 0;
+
+    for (let i = 0; i < array.length; i++) {
+        steps++;
+
+        if (array[i] === target) {
+            return {
+                index: i,
+                steps: steps
+            };
+        }
+    }
+
+    return {
+        index: -1,
+        steps: steps
+    };
+}
+
+function binarySearchWithSteps(array, target) {
+    let left = 0;
+    let right = array.length - 1;
+    let steps = 0;
+
+    while (left <= right) {
+        steps++;
+
+        const mid = Math.floor((left + right) / 2);
+
+        if (array[mid] === target) {
+            return {
+                index: mid,
+                steps: steps
+            };
+        }
+
+        if (array[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    return {
+        index: -1,
+        steps: steps
+    };
+}
+
+const linearResult = linearSearchWithSteps(
+    largeNumbers,
+    10000
+);
+
+const binaryResult = binarySearchWithSteps(
+    largeNumbers,
+    10000
+);
+
+console.log("Linear Search:");
+console.log(linearResult);
+
+console.log("Binary Search:");
+console.log(binaryResult);
+
+// 16.2
+const largeProducts = Array.from(
+    { length: 1000 },
+    (_, index) => ({
+        id: index + 1,
+        title: `Product ${index + 1}`,
+        category: `category-${index % 20}`
+    })
+);
+
+let nestedLoopSteps = 0;
+const sameCategoryPairs = [];
+
+for (let i = 0; i < largeProducts.length; i++) {
+    for (let j = i + 1; j < largeProducts.length; j++) {
+        nestedLoopSteps++;
+
+        if (
+            largeProducts[i].category ===
+            largeProducts[j].category
+        ) {
+            sameCategoryPairs.push([
+                largeProducts[i],
+                largeProducts[j]
+            ]);
+        }
+    }
+}
+
+console.log("Nested Loop:");
+console.log("Jumlah pasangan:", sameCategoryPairs.length);
+console.log("Jumlah langkah:", nestedLoopSteps);
+
+const categoryMap = new Map();
+let mapSteps = 0;
+
+for (const product of largeProducts) {
+    mapSteps++;
+
+    if (!categoryMap.has(product.category)) {
+        categoryMap.set(product.category, []);
+    }
+
+    categoryMap.get(product.category).push(product);
+}
+
+console.log("Grouping dengan Map:");
+console.log("Jumlah kategori:", categoryMap.size);
+console.log("Jumlah langkah:", mapSteps);
+
