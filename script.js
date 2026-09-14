@@ -492,3 +492,22 @@ const uniqueTags = [...new Set(allTagsFlat)];
 
 console.log("Unique Tags:");
 console.log(uniqueTags);
+
+//12.1
+function buildProductLookup(products) {
+    const productMap = new Map();
+
+    for (const product of products) {
+        productMap.set(product.id, product);
+    }
+
+    return productMap;
+}
+
+const productLookup = buildProductLookup(products);
+
+console.log("Product Lookup:");
+console.log(productLookup);
+
+console.log("Produk dengan ID 10:");
+console.log(productLookup.get(10));
