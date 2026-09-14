@@ -472,3 +472,23 @@ const categoryFrequency = countFrequency(
 
 console.log("Category Frequency:");
 console.log(categoryFrequency);
+
+// 11.1 
+const uniqueCategories = [...new Set(
+    products.map(product => product.category)
+)];
+
+console.log("Unique Categories:");
+console.log(uniqueCategories);
+
+const uniqueBrands = [...new Set(
+    products.map(product => product.brand)
+)];
+
+console.log("Unique Brands:");
+console.log(uniqueBrands);
+
+const uniqueTags = [...new Set(allTagsFlat)];
+
+console.log("Unique Tags:");
+console.log(uniqueTags);
