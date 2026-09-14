@@ -590,3 +590,31 @@ console.log(requestQueue.items);
 
 console.log("Request berikutnya:", requestQueue.peek());
 
+// 15.1
+const categoryTree = [
+    {
+        name: "Electronics",
+        children: [
+            {
+                name: "Laptop",
+                children: []
+            },
+            {
+                name: "Phone",
+                children: []
+            }
+        ]
+    }
+];
+
+function printCategories(categories, depth = 0) {
+    for (const category of categories) {
+        console.log(" ".repeat(depth) + category.name);
+
+        if (category.children.length > 0) {
+            printCategories(category.children, depth + 1);
+        }
+    }
+}
+
+printCategories(categoryTree);
