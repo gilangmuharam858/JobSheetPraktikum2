@@ -741,3 +741,26 @@ console.log("Grouping dengan Map:");
 console.log("Jumlah kategori:", categoryMap.size);
 console.log("Jumlah langkah:", mapSteps);
 
+// 17.1
+function renderProducts(products) {
+    const container = document.querySelector("#product-list");
+
+    container.innerHTML = "";
+
+    for (const product of products) {
+        const card = document.createElement("div");
+
+        card.classList.add("product-card");
+
+        card.innerHTML = `
+            <h3>${product.title}</h3>
+            <p>Kategori: ${product.category}</p>
+            <p>Harga: $${product.price}</p>
+            <p>Stok: ${product.stock}</p>
+        `;
+
+        container.append(card);
+    }
+}
+
+renderProducts(products.slice(0, 5));
