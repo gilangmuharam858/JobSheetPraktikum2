@@ -835,3 +835,71 @@ sortSelect.addEventListener("change", (e) => {
     render();
 });
 
+// 20
+
+const product = state.products[0];
+
+const label = `${product.title} - $${product.price}`;
+
+console.log("Template Literal:");
+console.log(label);
+
+const getTitle = (product) => product.title;
+
+console.log("Arrow Function:");
+console.log(getTitle(product));
+
+
+const {
+    title,
+    price,
+    category
+} = product;
+
+console.log("Destructuring:");
+console.log(title);
+console.log(price);
+console.log(category);
+
+
+// 20.1
+function getStatistics(products) {
+    const totalProducts = products.length;
+
+    const totalPrice = products.reduce(
+        (total, { price }) => total + price,
+        0
+    );
+
+    const averagePrice = totalPrice / totalProducts;
+
+    const prices = products.map(({ price }) => price);
+
+    const highestPrice = Math.max(...prices);
+    const lowestPrice = Math.min(...prices);
+
+    const totalStock = products.reduce(
+        (total, { stock }) => total + stock,
+        0
+    );
+
+    const totalRating = products.reduce(
+        (total, product) => total + (product?.rating ?? 0),
+        0
+    );
+
+    const averageRating = totalRating / totalProducts;
+
+    return {
+        totalProducts,
+        averagePrice,
+        highestPrice,
+        lowestPrice,
+        totalStock,
+        averageRating
+    };
+}
+
+console.log("Statistics:");
+console.log(getStatistics(products));
+
