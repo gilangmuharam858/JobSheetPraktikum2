@@ -764,3 +764,51 @@ function renderProducts(products) {
 }
 
 renderProducts(products.slice(0, 5));
+
+// 18
+
+const state = {
+    products: products,
+    search: "",
+    category: "all",
+    sortBy: "default",
+    favorites: [],
+    status: "idle"
+};
+
+function render() {
+    let filteredProducts = state.products;
+
+    if (state.search !== "") {
+        filteredProducts = filteredProducts.filter(product =>
+            product.title.toLowerCase().includes(
+                state.search.toLowerCase()
+            )
+        );
+    }
+
+    if (state.category !== "all") {
+        filteredProducts = filteredProducts.filter(product =>
+            product.category === state.category
+        );
+    }
+
+    if (state.sortBy === "price-asc") {
+        filteredProducts = [...filteredProducts].sort(
+            (a, b) => a.price - b.price
+        );
+    }
+
+    if (state.sortBy === "price-desc") {
+        filteredProducts = [...filteredProducts].sort(
+            (a, b) => b.price - a.price
+        );
+    }
+
+    renderProducts(filteredProducts);
+}
+
+console.log("Initial State:");
+console.log(state);
+
+render();
