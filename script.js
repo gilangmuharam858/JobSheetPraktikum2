@@ -807,20 +807,18 @@ function render() {
 
     renderProducts(filteredProducts);
 }
-
-console.log("Initial State:");
-console.log(state);
-
-render();
-
-// 19.1
 const searchInput = document.querySelector("#search-input");
 
 searchInput.addEventListener("input", (e) => {
     state.search = e.target.value;
     render();
 });
+console.log("Initial State:");
+console.log(state);
 
+render();
+
+// 19.1
 const categorySelect = document.querySelector("#category-select");
 
 categorySelect.addEventListener("change", (e) => {
