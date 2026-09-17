@@ -36,11 +36,13 @@ async function loadProducts() {
         console.log("Data dari DummyJSON:");
         console.log(apiProducts);
 
-        renderProducts(state.products);
     } catch (error) {
         state.status = "error";
 
         console.error("Gagal mengambil data:", error);
+
+    } finally {
+        render();
     }
 }
 
