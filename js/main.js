@@ -77,3 +77,30 @@ function render() {
 
     renderProducts(filteredProducts);
 }
+
+// 22
+
+function simulateRequest() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const success = true;
+
+            if (success) {
+                resolve("Data berhasil diambil");
+            } else {
+                reject("Gagal mengambil data");
+            }
+        }, 1000);
+    });
+}
+
+simulateRequest()
+    .then((result) => {
+        console.log("Success:", result);
+    })
+    .catch((error) => {
+        console.error("Error:", error);
+    })
+    .finally(() => {
+        console.log("Request selesai");
+    });
